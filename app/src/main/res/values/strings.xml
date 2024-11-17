@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LibraryTeam</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_login">Forgot Login?</string>
+    <string name="register">Register</string>
+    <string name="login_to_my_library">Login to MY LIBRARY</string>
 </resources>
