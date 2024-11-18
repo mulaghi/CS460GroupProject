@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "316218936578",
+    "project_id": "cs460libraryteam",
+    "storage_bucket": "cs460libraryteam.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316218936578:android:2aea1973666984f903061b",
+        "android_client_info": {
+          "package_name": "com.example.libraryteam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ6pwOxB6-wcaxfRb-yQZmqErHdYqYp8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
