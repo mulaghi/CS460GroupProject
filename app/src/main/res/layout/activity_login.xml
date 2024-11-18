@@ -1,82 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clipToPadding="false"
+    android:overScrollMode="never"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center">
+    android:padding="24dp"
+    android:scrollbars="none"
+    tools:context="LoginActivity">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_to_my_library"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp" />
-
-    <!-- Username input -->
-    <EditText
-        android:id="@+id/username"
-        android:autofillHints="username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/username"
-        android:inputType="text"
-        android:layout_marginBottom="16dp"
-        android:padding="12dp"
-        android:background="@android:drawable/edit_text"
-        android:textSize="16sp" />
-
-    <!-- Password input -->
-    <EditText
-        android:id="@+id/password"
-        android:autofillHints="password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:layout_marginBottom="32dp"
-        android:padding="12dp"
-        android:background="@android:drawable/edit_text"
-        android:textSize="16sp" />
-
-    <!-- Sign In Button -->
-    <Button
-        android:id="@+id/sign_in_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_in"
-        android:layout_marginBottom="16dp"
-        android:textSize="16sp" />
-
-    <!-- Forgot Login and Register -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/forgot_login"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/forgot_login"
-            android:textSize="14sp"
-            android:textColor="#0000FF"/>
+            android:layout_marginTop="60dp"
+            android:text="@string/login_to_my_library"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp" />
 
-        <Space
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/username_box"
+            android:autofillHints="username"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_marginTop="60dp"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/password_box"
+            android:autofillHints="password"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register"
-            android:textSize="14sp"
-            android:textColor="#0000FF"/>
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:layout_marginBottom="32dp"
+            android:padding="12dp"
+            android:background="@android:drawable/edit_text"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/forgot_login_clickable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forgot_login"
+                android:textSize="14sp"
+                android:textColor="#0000FF"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/register_clickable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register"
+                android:textSize="14sp"
+                android:textColor="#0000FF"/>
+        </LinearLayout>
+
     </LinearLayout>
-</LinearLayout>
+
+</ScrollView>

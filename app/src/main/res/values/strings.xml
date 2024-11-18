@@ -16,4 +16,9 @@
     <string name="enter_date_of_birth_here">enter date of birth here</string>
     <string name="enter_phone_number_here">enter phone number here</string>
     <string name="phone_number">Phone Number</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="add_image">Add Image</string>
+    <string name="username_activityregister">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register_activityregister">Register</string>
 </resources>
