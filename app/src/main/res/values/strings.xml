@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name">LibraryTeam</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_login">Forgot Login?</string>
+    <string name="register">Register</string>
+    <string name="login_to_my_library">Login to MY LIBRARY</string>
+
     <string name="my_library">MY LIBRARY</string>
     <string name="user_settings">User Settings</string>
     <string name="email">Email</string>
     <string name="enter_email_here">enter email here</string>
     <string name="enter_password_here">enter password here</string>
-    <string name="password">Password</string>
     <string name="date_of_birth">Date of birth</string>
     <string name="enter_date_of_birth_here">enter date of birth here</string>
     <string name="enter_phone_number_here">enter phone number here</string>
+    <string name="phone_number">Phone Number</string>
 </resources>
