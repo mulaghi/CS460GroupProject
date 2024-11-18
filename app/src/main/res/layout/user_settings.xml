@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:weightSum="100">
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/tvMyLibrary"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_height="50dp"
         android:text="@string/my_library"
         android:textStyle="bold"
         android:textSize="40sp" />
@@ -18,16 +17,14 @@
     <TextView
         android:id="@+id/tvUserSettings"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_height="50dp"
         android:text="@string/user_settings"
         android:textSize="32sp" />
 
     <TextView
         android:id="@+id/tvEmailEntry"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_height="40dp"
         android:gravity="bottom"
         android:text="@string/email"
         android:textSize="24sp" />
@@ -35,35 +32,16 @@
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_height="40dp"
         android:hint="@string/enter_email_here"
         android:autofillHints="emailAddress"
-        android:inputType="textEmailAddress" />
-
-    <TextView
-        android:id="@+id/tvPasswordEntry"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:gravity="bottom"
-        android:text="@string/password"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:hint="@string/enter_password_here"
-        android:autofillHints="password"
-        android:inputType="textPassword" />
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:id="@+id/tvDateOfBirthEntry"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_height="40dp"
         android:gravity="bottom"
         android:text="@string/date_of_birth"
         android:textSize="24sp" />
@@ -72,28 +50,85 @@
     <EditText
         android:id="@+id/etDateOfBirth"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_height="40dp"
         android:hint="@string/enter_date_of_birth_here"
         android:autofillHints="creditCardExpirationDate"
-        android:inputType="date" />
+        android:inputType="date"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:id="@+id/tvPhoneNumberEntry"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_height="40dp"
         android:gravity="bottom"
-        android:text="@string/enter_phone_number_here"
+        android:text="@string/phone_number"
         android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etPhoneNumber"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:hint="@string/enter_email_here"
+        android:layout_height="40dp"
+        android:hint="@string/enter_phone_number_here"
         android:autofillHints="phone"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tvPasswordEntry"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="bottom"
+        android:text="@string/password"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/enter_password_here"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tvConfirmPasswordEntry"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="bottom"
+        android:text="@string/confirm_password"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/enter_password_again"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="20dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelUserSettings"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/cancel"
+            android:textSize="24sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUpdateUserSettings"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/update"
+            android:textSize="24sp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
