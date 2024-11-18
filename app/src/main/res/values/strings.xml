@@ -16,4 +16,5 @@
     <string name="enter_date_of_birth_here">enter date of birth here</string>
     <string name="enter_phone_number_here">enter phone number here</string>
     <string name="phone_number">Phone Number</string>
+    <string name="mylibrary">MyLibrary</string>
 </resources>
