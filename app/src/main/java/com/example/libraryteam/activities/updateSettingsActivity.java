@@ -8,13 +8,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.libraryteam.databinding.UserSettingsBinding;
+
 
 /**
  * update user settings class
  */
 public class updateSettingsActivity extends AppCompatActivity {
 
-    private ActivityUpdateSettingsBinding binding;
+    private UserSettingsBinding binding;
 
 
     /**
@@ -25,7 +27,7 @@ public class updateSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityUpdateSettingsBinding.inflate(getLayoutInflater());
+        binding = UserSettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListeners();
     }
