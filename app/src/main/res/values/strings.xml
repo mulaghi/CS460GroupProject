@@ -28,4 +28,9 @@
     <string name="book_description">Book Description</string>
     <string name="check_out">Check Out</string>
     <string name="checked_out_items">Checked Out Items</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="add_image">Add Image</string>
+    <string name="username_activityregister">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register_activityregister">Register</string>
 </resources>
