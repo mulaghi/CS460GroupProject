@@ -12,10 +12,16 @@
     <string name="email">Email</string>
     <string name="enter_email_here">enter email here</string>
     <string name="enter_password_here">enter password here</string>
+    <string name="enter_password_again">enter password again</string>
     <string name="date_of_birth">Date of birth</string>
     <string name="enter_date_of_birth_here">enter date of birth here</string>
     <string name="enter_phone_number_here">enter phone number here</string>
     <string name="phone_number">Phone Number</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="add_image">Add Image</string>
+    <string name="username_activityregister">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="register_activityregister">Register</string>
 
     <string name="search_for_a_book_here">Search for a book here</string>
     <string name="title_of_book">Title of Book</string>
@@ -28,9 +34,8 @@
     <string name="book_description">Book Description</string>
     <string name="check_out">Check Out</string>
     <string name="checked_out_items">Checked Out Items</string>
-    <string name="create_an_account">Create an account</string>
-    <string name="add_image">Add Image</string>
-    <string name="username_activityregister">Username</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="register_activityregister">Register</string>
+
+
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
 </resources>
