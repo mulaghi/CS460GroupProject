@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         bookOne.Language = "English";
         bookOne.Published= "2020";
         bookOne.Publisher = "Workman Publishing Company";
+        bookOne.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
         Book bookTwo = new Book();
         bookTwo.Title = "To Ace Math in One Big Fat Notebook: The Complete Middle School Study Guide (Big Fat Notebooks)";
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         bookTwo.Language = "English";
         bookTwo.Published= "2016";
         bookTwo.Publisher = "Workman Publishing Company";
+        bookTwo.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
         Book bookThree = new Book();
         bookThree.Title = "Everything You Need to Ace World History in One Big Fat Notebook, 2nd Edition: The Complete Middle School Study Guide";
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         bookThree.Language = "English";
         bookThree.Published= "2020";
         bookThree.Publisher = "Workman Publishing Company";
+        bookThree.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
         Book bookFour = new Book();
         bookFour.Title = "Everything You Need to Ace Geometry in One Big Fat Notebook";
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         bookFour.Language = "English";
         bookFour.Published= "2020";
         bookFour.Publisher = "Workman Publishing Company";
+        bookFour.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
         Book bookFive = new Book();
         bookFive.Title = "Everything You Need to Ace Pre-Algebra and Algebra I in One Big Fat Notebook";
@@ -68,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
         bookFive.Language = "English";
         bookFive.Published= "2020";
         bookFive.Publisher = "Workman Publishing Company";
+        bookFive.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+        final BookAdapter bookAdapter = new BookAdapter(bookList);
+        bookRecyclerView.setAdapter(bookAdapter);
 
     }
 }
