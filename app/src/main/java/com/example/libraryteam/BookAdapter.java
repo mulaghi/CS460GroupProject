@@ -18,27 +18,51 @@ import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
+
+    /**
+     * Called when RecyclerView needs a new {@link BookViewHolder} to represent an item.
+     *
+     * @param parent   The {@link ViewGroup} into which the new {@link View} will be added.
+     * @param viewType The view type of the new {@link View}.
+     * @return A new {@link BookViewHolder} instance.
+     */
+
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new BookViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_book, parent, false));
+        return new BookViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_container_book, parent, false));
     }
 
+    /**
+     * Binds the data from a {@link Book} object to the corresponding {@link BookViewHolder}.
+     *
+     * @param holder   The {@link BookViewHolder} to bind data to.
+     * @param position The position of the {@link Book} in the {@link List}.
+     */
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         holder.bindBook(bookList.get(position));
     }
-
+    /**
+     * Returns the total number of items in the {@link List}.
+     *
+     * @return The number of {@link Book} objects in the list.
+     */
     @Override
     public int getItemCount() {
         return bookList.size();
     }
 
+    /**
+     * Constructor for {@code BookAdapter}.
+     *
+     * @param bookList A {@link List} of {@link Book} objects to be displayed in the RecyclerView.
+     */
     public BookAdapter(List<Book> bookList){
         this.bookList = bookList;
     }
     private List<Book> bookList;
-
 
     static class BookViewHolder extends RecyclerView.ViewHolder{
 
@@ -48,29 +72,40 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         RoundedImageView imageBook;
         TextView bookTitle, bookAuthor, bookDescription, bookLanguage, bookPublished, bookPublisher, bookISBN;
 
+        /**
+         * Constructor for {@code BookViewHolder}.
+         *
+         * @param itemView The {@link View} representing an individual book item.
+         */
         public BookViewHolder(@NonNull View itemView){
             super(itemView);
             layoutBooks = itemView.findViewById(R.id.layoutBooks);
-            viewBackground = itemView.findViewById(R.id.viewBackground);
-            imageBook = itemView.findViewById(R.id.imageBookCover);
+            imageBook = itemView.findViewById(R.id.bookCover);
             bookTitle = itemView.findViewById(R.id.bookTitle);
             bookAuthor = itemView.findViewById(R.id.bookAuthor);
             bookLanguage = itemView.findViewById(R.id.bookLanguage);
-            bookPublished = itemView.findViewById(R.id.bookPublished);
             bookPublisher = itemView.findViewById(R.id.bookPublisher);
+            bookPublished = itemView.findViewById(R.id.bookPublished);
             bookISBN = itemView.findViewById(R.id.bookISBN);
             bookDescription = itemView.findViewById(R.id.bookDescription);
         }
 
-        //Title, Author, Language, Published, Publisher, ISBN
+        /**
+         * Binds the data from a {@link Book} object to the corresponding UI elements in the layout.
+         *
+         * @param book The {@link Book} object containing the data to be displayed.
+         */
         void  bindBook(final Book book){
-            imageBook.setImageResource(book.image);
-            bookTitle.setText(book.Title);
-            bookAuthor.setText(book.Author);
-            bookLanguage.setText(book.Language);
-            bookPublished.setText(book.Published);
-            bookPublisher.setText(book.Publisher);
-            bookDescription.setText(book.Description);
+            if (book != null) {
+                imageBook.setImageResource(book.image);
+                bookTitle.setText(book.Title);
+                bookAuthor.setText(book.Author);
+                bookLanguage.setText(book.Language);
+                bookPublished.setText(book.Published);
+                bookPublisher.setText(book.Publisher);
+                bookDescription.setText(book.Description);
+                bookISBN.setText(book.ISBN);
+            }
         }
 
     }

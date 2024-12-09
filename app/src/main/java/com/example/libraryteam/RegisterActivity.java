@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
 
-    // private PreferenceManager preferenceManager;
+    //private PreferenceManager preferenceManager;
     private String encodeImage;
 
     /**
@@ -115,10 +115,10 @@ public class RegisterActivity extends AppCompatActivity {
                                     .set(user)
                                     .addOnSuccessListener(documentReference -> {
                                         loading(false);
-//                                        preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
-//                                        preferenceManager.putString(Constants.KEY_USERID, userId);
-//                                        preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
-//                                        preferenceManager.putString(Constants.KEY_IMAGE, encodeImage);
+                                            //preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                                            //preferenceManager.putString(Constants.KEY_USERID, userId);
+                                            //preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
+                                            //preferenceManager.putString(Constants.KEY_IMAGE, encodeImage);
 
                                         showToast("Registration successful!");
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);

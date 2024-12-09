@@ -63,46 +63,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
+        android:padding="2dp"
         app:layout_constraintTop_toBottomOf="@id/bookAuthor"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toStartOf="@id/bookTitle"
+        app:layout_constraintEnd_toEndOf="@id/bookTitle">
 
         <TextView
             android:id="@+id/bookLanguage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/language"
             android:gravity="center"
-            android:textSize="16sp" />
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/bookPublisher"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/publisher"
             android:gravity="center"
-            android:textSize="16sp" />
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/bookPublished"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/published"
             android:gravity="center"
-            android:textSize="16sp" />
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/bookISBN"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/isbn"
             android:gravity="center"
-            android:textSize="16sp" />
+            android:textSize="11sp" />
 
 
     </LinearLayout>
