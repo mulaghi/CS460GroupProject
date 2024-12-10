@@ -3,8 +3,6 @@ package com.example.libraryteam;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +29,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new BookViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_container_book, parent, false));
+                .inflate(R.layout.book_preview_container, parent, false));
     }
 
     /**
