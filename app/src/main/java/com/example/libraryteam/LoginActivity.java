@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.libraryteam.databinding.ActivityLoginBinding;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        FirebaseApp.initializeApp(this);
         // preferenceManager = new PreferenceManager(getApplicationContext());
         setListeners();
     }
@@ -75,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void SignIn() {
         loading(true);
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         auth.signInWithEmailAndPassword(binding.usernameBox.getText().toString(), binding.passwordBox.getText().toString())

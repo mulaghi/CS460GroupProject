@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -41,7 +42,9 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.roundedimageview)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.firebase.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
+
