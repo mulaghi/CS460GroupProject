@@ -1,10 +1,9 @@
 package com.example.libraryteam;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +30,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new BookViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_container_book, parent, false));
+                .inflate(R.layout.book_preview_container, parent, false));
     }
 
     /**
@@ -54,15 +53,28 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         return bookList.size();
     }
 
+    private String getShortenedText(String text, int maxLength) {
+        if (text.length() > maxLength) {
+            return text.substring(0, maxLength) + "...";
+        }
+        return text;
+    }
+
     /**
      * Constructor for {@code BookAdapter}.
      *
      * @param bookList A {@link List} of {@link Book} objects to be displayed in the RecyclerView.
      */
-    public BookAdapter(List<Book> bookList){
+    public BookAdapter(List<Book> bookList, onBookClickListener onBookClickListener){
         this.bookList = bookList;
+        BookAdapter.onBookClickListener = onBookClickListener;
+    }
+
+    public interface onBookClickListener {
+        void onBookClick(Book book);
     }
     private List<Book> bookList;
+    private static onBookClickListener onBookClickListener;
 
     static class BookViewHolder extends RecyclerView.ViewHolder{
 
@@ -70,7 +82,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         View viewBackground;
 
         RoundedImageView imageBook;
-        TextView bookTitle, bookAuthor, bookDescription, bookLanguage, bookPublished, bookPublisher, bookISBN;
+        TextView bookTitle, bookAuthor, bookDescription, bookLanguage, bookPublished, bookPublisher, bookISBN, bookShortDescription;
 
         /**
          * Constructor for {@code BookViewHolder}.
@@ -79,7 +91,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
          */
         public BookViewHolder(@NonNull View itemView){
             super(itemView);
-            layoutBooks = itemView.findViewById(R.id.layoutBooks);
+            layoutBooks = itemView.findViewById(R.id.bookContainerLayout);
             imageBook = itemView.findViewById(R.id.bookCover);
             bookTitle = itemView.findViewById(R.id.bookTitle);
             bookAuthor = itemView.findViewById(R.id.bookAuthor);
@@ -88,6 +100,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             bookPublished = itemView.findViewById(R.id.bookPublished);
             bookISBN = itemView.findViewById(R.id.bookISBN);
             bookDescription = itemView.findViewById(R.id.bookDescription);
+            bookShortDescription = itemView.findViewById(R.id.bookShortDescription);
         }
 
         /**
@@ -106,7 +119,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 bookDescription.setText(book.Description);
                 bookISBN.setText(book.ISBN);
             }
+
+            layoutBooks.setOnClickListener(v -> {
+                if (onBookClickListener != null) {
+                    onBookClickListener.onBookClick(book);
+                }
+            });
         }
 
     }
+
+
 }
