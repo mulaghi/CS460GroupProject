@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         bookList = new ArrayList<>();
 
         ImageView menuIcon = findViewById(R.id.menu_icon);
-
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
         bookAdapter = new BookAdapter(bookList, book -> {
             Intent intent = new Intent(MainActivity.this, BookView.class);
             intent.putExtra("Title", book.getBookTitle());
