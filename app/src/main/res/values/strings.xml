@@ -45,5 +45,10 @@
     <string name="language_not_specified">Language not specified</string>
     <string name="publisher_not_specified">Publisher not specified</string>
     <string name="isbn_not_specified">ISBN not specified</string>
-    <string name="home_page">Home page</string>
+
+    <string name="enter_username_here">enter username here</string>
+    <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="enter_email">enter email</string>
+    <string name="send_email">send email</string>
+    <string name="back">back</string>
 </resources>

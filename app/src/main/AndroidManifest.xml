@@ -35,6 +35,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"/>
+        <activity
+            android:name=".UpdateSettingsActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false"/>
 
         <activity android:name=".BookView"
             android:exported="false"/>

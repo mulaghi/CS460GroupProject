@@ -19,6 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    LoggedInUser loggedInUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         List<Book> bookList = new ArrayList<>();
 
         ImageView menuIcon = findViewById(R.id.menu_icon);
+
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
                     } else if (item.getItemId() == R.id.menu_home_page) {
                         return true;
                     } else if (item.getItemId() == R.id.menu_user_settings) {
-                        // Handle Search
-                        // Toast.makeText(SearchActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
+                        // Handles "User Settings"
+                        startActivity(new Intent(getApplicationContext(), UpdateSettingsActivity.class));
                         return true;
                     }
                     return false;
