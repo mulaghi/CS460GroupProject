@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
         RecyclerView bookRecyclerView = findViewById(R.id.bookRecyclerView);
-        List<Book> bookList = new ArrayList<>();
+        bookList = new ArrayList<>();
 
         ImageView menuIcon = findViewById(R.id.menu_icon);
 
