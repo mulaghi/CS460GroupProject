@@ -1,5 +1,6 @@
 package com.example.libraryteam;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,40 +18,40 @@ public class BookView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_view);
-        //Place i correct View
-//        bookCoverImage = findViewById(R.id.bookCoverImage); // Replace with your actual ImageView ID
-//        bookTitle = findViewById(R.id.bookTitle);
-//        bookAuthor = findViewById(R.id.bookAuthor);
-//        bookLanguage = findViewById(R.id.bookLanguage);
-//        bookPublisher = findViewById(R.id.bookPublisher);
-//        bookPublished = findViewById(R.id.bookPublished);
-//        bookISBN = findViewById(R.id.bookISBN);
-//        bookDescription = findViewById(R.id.bookDescription);
-//
-//        Intent intent = getIntent();
-//        if (intent != null) {
-//            String title = intent.getStringExtra("Title");
-//            String author = intent.getStringExtra("Author");
-//            String language = intent.getStringExtra("Language");
-//            String publisher = intent.getStringExtra("Publisher");
-//            String published = intent.getStringExtra("Published");
-//            String isbn = intent.getStringExtra("ISBN");
-//            String description = intent.getStringExtra("Description");
-//            int imageResId = intent.getIntExtra("Image", 0); // Default to 0 if no image is passed
-//
-//            // Set data to views
-//            bookCoverImage.setImageResource(imageResId);
-//            bookTitle.setText(title);
-//            bookAuthor.setText(author);
-//            bookLanguage.setText(language);
-//            bookPublisher.setText(publisher);
-//            bookPublished.setText(published);
-//            bookISBN.setText(isbn);
-//            bookDescription.setText(description);
+
+        //Linking to XML
+        bookCoverImage = findViewById(R.id.imageBookCover);
+        bookTitle = findViewById(R.id.textBookName);
+        bookAuthor = findViewById(R.id.textAuthor);
+        bookLanguage = findViewById(R.id.textLanguage);
+        bookPublisher = findViewById(R.id.textPublisher);
+        bookPublished = findViewById(R.id.textBookYear);
+        bookISBN = findViewById(R.id.textISBN);
+        bookDescription = findViewById(R.id.textBookDescription);
+
+        // Retreive data from prior class
+        Intent intent = getIntent();
+        //Make sure its not empty
+        if (intent != null) {
+            String title = intent.getStringExtra("Title");
+            String author = intent.getStringExtra("Author");
+            String language = intent.getStringExtra("Language");
+            String publisher = intent.getStringExtra("Publisher");
+            String published = intent.getStringExtra("Published");
+            String isbn = intent.getStringExtra("ISBN");
+            String description = intent.getStringExtra("Description");
+            bookCoverImage.setImageResource(intent.getIntExtra("Image", -1));
+
+            // Set the data to the views
+            bookTitle.setText(title != null ? title : "No Title Available");
+            bookAuthor.setText(author != null ? author : "No Author Available");
+            bookLanguage.setText(language != null ? language : "No Language Info");
+            bookPublisher.setText(publisher != null ? publisher : "No Publisher Info");
+            bookPublished.setText(published != null ? published : "No Published Date");
+            bookISBN.setText(isbn != null ? isbn : "No ISBN");
+            bookDescription.setText(description != null ? description : "No Description Available");
+
         }
-
-
-    private void setListeners() {
     }
 
 }

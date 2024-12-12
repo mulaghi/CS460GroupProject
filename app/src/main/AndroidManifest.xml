@@ -33,6 +33,9 @@
             android:name=".MainActivity"
             android:exported="false"/>
 
+        <activity android:name=".BookView"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
