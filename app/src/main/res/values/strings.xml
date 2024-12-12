@@ -38,4 +38,6 @@
 
     <string name="cancel">Cancel</string>
     <string name="update">Update</string>
+    <string name="search_menu_item">Search</string>
+    <string name="user_settings_menu_item">User Settings</string>
 </resources>

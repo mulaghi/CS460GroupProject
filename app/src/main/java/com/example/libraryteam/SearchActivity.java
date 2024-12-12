@@ -2,6 +2,7 @@ package com.example.libraryteam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -17,37 +18,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
+public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        setContentView(R.layout.activity_search);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.search), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         RecyclerView bookRecyclerView = findViewById(R.id.bookRecyclerView);
         List<Book> bookList = new ArrayList<>();
-
         ImageView menuIcon = findViewById(R.id.menu_icon);
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PopupMenu popupMenu = new PopupMenu(MainActivity.this, v);
+                PopupMenu popupMenu = new PopupMenu(SearchActivity.this, v);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_items, popupMenu.getMenu());
 
                 popupMenu.setOnMenuItemClickListener(item -> {
                     if (item.getItemId() == R.id.menu_search) {
                         // Handle Search
-                        Toast.makeText(MainActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
-                        return true;
-                    } else if (item.getItemId() == R.id.menu_user_settings) {
-                        // Handle Search
-                        Toast.makeText(MainActivity.this, "User settings clicked", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SearchActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
                         return true;
                     }
                     return false;
@@ -56,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
         // Adds sample book data to the list.
         Book bookOne = new Book();
         bookOne.image = R.drawable.bookimage;
@@ -120,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         BookAdapter bookAdapter = new BookAdapter(bookList, book -> {
             // Start the details activity with book information
-            Intent intent = new Intent(MainActivity.this, BookView.class);
+            Intent intent = new Intent(SearchActivity.this, BookView.class);
 
             // Pass book details as extras
             intent.putExtra("Title", book.Title);
@@ -136,9 +129,7 @@ public class MainActivity extends AppCompatActivity {
         });
         bookRecyclerView.setAdapter(bookAdapter);
 
-
     }
-
     private String getShortenedText(String text, int maxLength) {
         if (text.length() > maxLength) {
             return text.substring(0, maxLength) + "...";
