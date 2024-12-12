@@ -36,13 +36,11 @@
     <string name="checked_out_items">Checked Out Items</string>
 
 
-    <string name="cancel">Cancel</string>
-    <string name="update">Update</string>
-    <string name="search_menu_item">Search</string>
-    <string name="user_settings_menu_item">User Settings</string>
-    <string name="search_icon">Search icon</string>
-    <string name="search_for_books">Search for books</string>
-    <string name="language_not_specified">Language not specified</string>
-    <string name="publisher_not_specified">Publisher not specified</string>
-    <string name="isbn_not_specified">ISBN not specified</string>
+    <string name="cancel">cancel</string>
+    <string name="update">update</string>
+    <string name="enter_username_here">enter username here</string>
+    <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="enter_email">enter email</string>
+    <string name="send_email">send email</string>
+    <string name="back">back</string>
 </resources>
