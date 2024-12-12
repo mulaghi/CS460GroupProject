@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/search"
@@ -9,6 +9,35 @@
     android:animateLayoutChanges="true"
     tools:context=".SearchActivity">
 
+    <LinearLayout
+        android:id="@+id/searchBarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/searchIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_search"
+            android:contentDescription="@string/search_icon" />
+
+        <!-- Search Input Field -->
+        <EditText
+            android:id="@+id/searchInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/search_for_books"
+            android:padding="8dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layoutHeader"
@@ -17,29 +46,22 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/searchBarContainer">
+
         <ImageView
             android:id="@+id/menu_icon"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/icons8_menu"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-
+            android:src="@drawable/icons8_menu" />
 
         <TextView
             android:id="@+id/myLibraryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/my_library"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            android:text="@string/my_library" />
     </LinearLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookRecyclerView"
@@ -49,7 +71,7 @@
         android:orientation="vertical"
         android:padding="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/layoutHeader"/>
-
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
