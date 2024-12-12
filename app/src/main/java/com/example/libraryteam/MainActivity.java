@@ -12,7 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     LoggedInUser loggedInUser;
+
+    private BookAdapter bookAdapter;
+    private FirebaseFirestore firestore;
+    private List<Book> bookList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        firestore = FirebaseFirestore.getInstance();
         RecyclerView bookRecyclerView = findViewById(R.id.bookRecyclerView);
-        List<Book> bookList = new ArrayList<>();
+        bookList = new ArrayList<>();
 
         ImageView menuIcon = findViewById(R.id.menu_icon);
 
@@ -45,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
                 popupMenu.setOnMenuItemClickListener(item -> {
                     if (item.getItemId() == R.id.menu_search) {
-                        // Handles "Search"
                         Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
@@ -54,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     } else if (item.getItemId() == R.id.menu_home_page) {
                         return true;
                     } else if (item.getItemId() == R.id.menu_user_settings) {
-                        // Handles "User Settings"
                         startActivity(new Intent(getApplicationContext(), UpdateSettingsActivity.class));
                         return true;
                     }
@@ -65,39 +72,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Adds sample book data to the list.
-        Book bookFive = new Book();
-        bookFive.setBookTitle("Everything You Need to Ace Pre-Algebra and Algebra I in One Big Fat Notebook");
-        bookFive.setAuthor("Workman Publishing");
-        bookFive.setBookDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt");
-        bookFive.setBookYear("2020"); // Year as an integer
-        bookFive.setBookISBN("978-1523504374");
-        bookFive.setBookLanguage("English");
-        bookFive.setBookPublisher("Workman Publishing Company");
-        bookFive.setBookImage("");//Set this to a path? // If no image is available, set it as an empty string or a default value
-        bookFive.setBookID(5); // Assign a unique ID for this book if required
-        bookList.add(bookFive);
-        //bookFive.shortDescription = getShortenedText(bookFive.Description, 30);bookList.add(bookFive);
-
-        BookAdapter bookAdapter = new BookAdapter(bookList, book -> {
-            // Start the details activity with book information
+        bookAdapter = new BookAdapter(bookList, book -> {
             Intent intent = new Intent(MainActivity.this, BookView.class);
-
-            // Pass book details as extras
             intent.putExtra("Title", book.getBookTitle());
             intent.putExtra("Author", book.getAuthor());
-            intent.putExtra("Language", book.getBookLanguage());
-            intent.putExtra("Publisher", book.getBookPublisher());
-            intent.putExtra("Published", book.getBookYear());
-            intent.putExtra("ISBN", book.getBookISBN());
             intent.putExtra("Description", book.getBookDescription());
-            intent.putExtra("Image", R.id.bookCover);
-
-            startActivity(intent); // Start the new activity
+            intent.putExtra("Year", book.getBookYear());
+            intent.putExtra("Image", book.getBookImage());
+            startActivity(intent);
         });
+        bookRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         bookRecyclerView.setAdapter(bookAdapter);
 
+        loadBooksFromFirebase();
+    }
 
+    private void loadBooksFromFirebase() {
+        firestore.collection("books")
+                .orderBy("bookID", Query.Direction.ASCENDING)
+                .limit(5) // Limit to 5 random books (you can shuffle on the backend for randomness)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    bookList.clear();
+                    queryDocumentSnapshots.forEach(document -> {
+                        Book book = new Book(
+                                document.getString("author"),
+                                document.getString("bookDescription"),
+                                document.getLong("id") != null ? document.getLong("id").intValue() : 0,
+                                document.getString("bookImage"),
+                                document.getString("bookTitle"),
+                                document.getString("bookYear"),
+                                document.getString("isbn"),
+                                document.getString("language"),
+                                document.getString("publisher")
+                        );
+                        bookList.add(book);
+                    });
+                    bookAdapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(MainActivity.this, "Failed to load books: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
     private String getShortenedText(String text, int maxLength) {
@@ -106,5 +121,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return text;
     }
-
 }
