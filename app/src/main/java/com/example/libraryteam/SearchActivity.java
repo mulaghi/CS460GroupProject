@@ -97,7 +97,16 @@ public class SearchActivity extends AppCompatActivity {
                 popupMenu.setOnMenuItemClickListener(item -> {
                     if (item.getItemId() == R.id.menu_search) {
                         // Handle Search
-                        Toast.makeText(SearchActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(SearchActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else if (item.getItemId() == R.id.menu_home_page) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        return true;
+                    } else if (item.getItemId() == R.id.menu_user_settings) {
+                        // Handle Search
+                        // Toast.makeText(SearchActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
                         return true;
                     }
                     return false;
@@ -116,7 +125,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void searchBooks(String query) {
         if (query.length() < 3) {
-            Toast.makeText(SearchActivity.this, "Please enter at least 3 characters", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(SearchActivity.this, "Please enter at least 3 characters", Toast.LENGTH_SHORT).show();
             return; // Exit early if the query is too short
         }
 
@@ -126,7 +135,7 @@ public class SearchActivity extends AppCompatActivity {
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(SearchActivity.this, "SEARCH SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(SearchActivity.this, "SEARCH SUCCESSFUL", Toast.LENGTH_SHORT).show();
                         bookList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Book book = document.toObject(Book.class);

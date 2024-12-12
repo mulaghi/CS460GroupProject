@@ -48,9 +48,11 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         Toast.makeText(MainActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
                         return true;
+                    } else if (item.getItemId() == R.id.menu_home_page) {
+                        return true;
                     } else if (item.getItemId() == R.id.menu_user_settings) {
-                        // Handles "User Settings"
-                        Toast.makeText(MainActivity.this, "User settings clicked", Toast.LENGTH_SHORT).show();
+                        // Handle Search
+                        // Toast.makeText(SearchActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
                         return true;
                     }
                     return false;

@@ -45,4 +45,5 @@
     <string name="language_not_specified">Language not specified</string>
     <string name="publisher_not_specified">Publisher not specified</string>
     <string name="isbn_not_specified">ISBN not specified</string>
+    <string name="home_page">Home page</string>
 </resources>
