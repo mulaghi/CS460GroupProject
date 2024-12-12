@@ -51,4 +51,5 @@
     <string name="enter_email">enter email</string>
     <string name="send_email">send email</string>
     <string name="back">back</string>
+    <string name="home_page">Home Page</string>
 </resources>
