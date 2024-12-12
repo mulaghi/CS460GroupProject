@@ -116,12 +116,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
     }
-    private String getShortenedText(String text, int maxLength) {
-        if (text.length() > maxLength) {
-            return text.substring(0, maxLength) + "...";
-        }
-        return text;
-    }
 
     private void searchBooks(String query) {
         if (query.length() < 3) {
