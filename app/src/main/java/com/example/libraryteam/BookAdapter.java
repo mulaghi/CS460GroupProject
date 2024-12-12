@@ -135,9 +135,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 bookDescription.setText(book.getBookDescription());
                 bookISBN.setText(R.string.isbn_not_specified); // Default text for ISBN
             }
+
+            // Set OnClickListener for layoutBooks
+            layoutBooks.setOnClickListener(v -> {
+                if (onBookClickListener != null) {
+                    onBookClickListener.onBookClick(book);
+                }
+            });
         }
 
     }
+
+
 
 
 }
