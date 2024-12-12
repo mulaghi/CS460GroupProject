@@ -103,7 +103,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             bookPublished = itemView.findViewById(R.id.bookPublished);
             bookISBN = itemView.findViewById(R.id.bookISBN);
             bookDescription = itemView.findViewById(R.id.bookShortDescription);
-//            bookShortDescription = itemView.findViewById(R.id.bookShortDescription);
+//          bookShortDescription = itemView.findViewById(R.id.bookShortDescription);
         }
 
         /**
@@ -126,7 +126,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 } else {
                     imageBook.setImageResource(R.drawable.placeholder_image); // Default placeholder
                 }
-
                 // Set other book details
                 bookTitle.setText(book.getBookTitle());
                 bookAuthor.setText(book.getAuthor());

@@ -68,11 +68,12 @@ public class MainActivity extends AppCompatActivity {
         bookFive.setAuthor("Workman Publishing");
         bookFive.setBookDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt");
         bookFive.setBookYear("2020"); // Year as an integer
+        bookFive.setBookISBN("978-1523504374");
+        bookFive.setBookLanguage("English");
+        bookFive.setBookPublisher("Workman Publishing Company");
         bookFive.setBookImage("");//Set this to a path? // If no image is available, set it as an empty string or a default value
         bookFive.setBookID(5); // Assign a unique ID for this book if required
-        bookFive.ISBN = "978-1523504381";
-        bookFive.Language = "English";
-        bookFive.Publisher = "Workman Publishing Company";
+        bookList.add(bookFive);
         //bookFive.shortDescription = getShortenedText(bookFive.Description, 30);bookList.add(bookFive);
 
         BookAdapter bookAdapter = new BookAdapter(bookList, book -> {
@@ -80,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, BookView.class);
 
             // Pass book details as extras
-            intent.putExtra("Title", book.Title);
-            intent.putExtra("Author", book.Author);
-            intent.putExtra("Language", book.Language);
-            intent.putExtra("Publisher", book.Publisher);
-            intent.putExtra("Published", book.Published);
-            intent.putExtra("ISBN", book.ISBN);
-            intent.putExtra("Description", book.Description);
+            intent.putExtra("Title", book.getBookTitle());
+            intent.putExtra("Author", book.getAuthor());
+            intent.putExtra("Language", book.getBookLanguage());
+            intent.putExtra("Publisher", book.getBookPublisher());
+            intent.putExtra("Published", book.getBookYear());
+            intent.putExtra("ISBN", book.getBookISBN());
+            intent.putExtra("Description", book.getBookDescription());
             intent.putExtra("Image", R.id.bookCover);
 
             startActivity(intent); // Start the new activity
