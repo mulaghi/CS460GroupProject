@@ -19,6 +19,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    LoggedInUser loggedInUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         List<Book> bookList = new ArrayList<>();
 
         ImageView menuIcon = findViewById(R.id.menu_icon);
+
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     } else if (item.getItemId() == R.id.menu_user_settings) {
                         // Handles "User Settings"
-                        Toast.makeText(MainActivity.this, "User settings clicked", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), UpdateSettingsActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                         return true;
                     }
                     return false;

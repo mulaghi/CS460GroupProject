@@ -1,4 +1,4 @@
-package com.example.libraryteam.activities;
+package com.example.libraryteam;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,17 +8,31 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Patterns;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.libraryteam.LoggedInUser;
 import com.example.libraryteam.databinding.ActivityUserSettingsBinding;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashMap;
+
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 
 /**
@@ -29,6 +43,8 @@ public class UpdateSettingsActivity extends AppCompatActivity {
     private ActivityUserSettingsBinding binding;
 
     private String encodeImage;
+
+    LoggedInUser loggedInUser;
 
 
     private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
@@ -61,6 +77,39 @@ public class UpdateSettingsActivity extends AppCompatActivity {
 
         binding = ActivityUserSettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        loggedInUser = new LoggedInUser();
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+
+        String email = firebaseUser.getEmail();
+
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance(FirebaseApp.getInstance());
+        Query usersQuery = firebaseFirestore.collectionGroup("User");
+        usersQuery = usersQuery.whereEqualTo("email", email);
+
+        usersQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        if (document != null) {
+                            HashMap<String, Object> result = (HashMap<String, Object>)document.getData();
+                            loggedInUser.email = (String)result.get("email");
+                            loggedInUser.image = (String)result.get("image");
+                            loggedInUser.name = (String)result.get("name");
+                        }
+                    }
+                } else {
+                    Log.d("Query.get error:", task.getException().getMessage());
+                }
+            }
+        });
+
+        showToast(loggedInUser.email);
+        showToast(loggedInUser.name);
+
         setListeners();
     }
 
@@ -121,23 +170,14 @@ public class UpdateSettingsActivity extends AppCompatActivity {
      */
     private Boolean isValidUpdateDetails() {
 
-        String password = binding.etPassword.getText().toString().trim();
-        String confirmedPassword = binding.etConfirmPassword.getText().toString().trim();
-
         if (
                 binding.etUsername.getText().toString().trim().isEmpty()
-                || binding.etEmail.getText().toString().trim().isEmpty()
-                || password.isEmpty()
-                || confirmedPassword.isEmpty()) {
+                || binding.etEmail.getText().toString().trim().isEmpty()) {
             showToast("please enter information for all fields");
             return false;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.getText().toString()).matches()) {
             showToast("please enter a valid email");
-            return false;
-        }
-        if (!password.equals(confirmedPassword)) {
-            showToast("password and confirmed password don't match");
             return false;
         }
 

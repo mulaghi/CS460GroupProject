@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:scrollbars="none"
-    tools:context=".activities.UpdateSettingsActivity">
+    tools:context=".UpdateSettingsActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -86,40 +86,6 @@
             android:hint="@string/enter_email_here"
             android:autofillHints="emailAddress"
             android:inputType="textEmailAddress"
-            android:layout_marginBottom="20dp" />
-
-        <TextView
-            android:id="@+id/tvPasswordEntry"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="bottom"
-            android:text="@string/password"
-            android:textSize="24sp" />
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="@string/enter_password_here"
-            android:autofillHints="password"
-            android:inputType="textPassword"
-            android:layout_marginBottom="20dp" />
-
-        <TextView
-            android:id="@+id/tvConfirmPasswordEntry"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="bottom"
-            android:text="@string/confirm_password"
-            android:textSize="24sp" />
-
-        <EditText
-            android:id="@+id/etConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="@string/enter_password_again"
-            android:autofillHints="password"
-            android:inputType="textPassword"
             android:layout_marginBottom="20dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

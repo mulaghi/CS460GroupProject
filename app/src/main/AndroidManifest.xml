@@ -33,7 +33,7 @@
             android:name=".MainActivity"
             android:exported="false"/>
         <activity
-            android:name=".activities.UpdateSettingsActivity"
+            android:name=".UpdateSettingsActivity"
             android:exported="false"/>
         <activity
             android:name=".ForgotPasswordActivity"
