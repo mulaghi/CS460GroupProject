@@ -115,9 +115,14 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void searchBooks(String query) {
+        if (query.length() < 3) {
+            Toast.makeText(SearchActivity.this, "Please enter at least 3 characters", Toast.LENGTH_SHORT).show();
+            return; // Exit early if the query is too short
+        }
+
+        String queryLowerCase = query.toLowerCase();
+
         database.collection("books")
-                .whereGreaterThanOrEqualTo("bookTitle", query)
-                .whereLessThanOrEqualTo("bookTitle", query + "\uf8ff")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -125,7 +130,10 @@ public class SearchActivity extends AppCompatActivity {
                         bookList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             Book book = document.toObject(Book.class);
-                            bookList.add(book);
+                            // Check if the book title contains the query, case-insensitively
+                            if (book.getBookTitle().toLowerCase().contains(queryLowerCase)) {
+                                bookList.add(book);
+                            }
                         }
                         bookAdapter.notifyDataSetChanged();
                     } else {
