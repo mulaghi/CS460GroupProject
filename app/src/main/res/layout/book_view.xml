@@ -8,13 +8,13 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:contentDescription="@string/app_name"
+        android:layout_width="23dp"
+        android:layout_height="19dp"
         android:layout_marginTop="25dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/baseline_close_24"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textLibraryName"
@@ -205,5 +205,21 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/inputSearch"
         app:layout_constraintTop_toBottomOf="@id/textPublished"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check Out"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:backgroundTint="#524eb7"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="@id/inputSearch"
+        app:layout_constraintTop_toBottomOf="@id/textPublisher"/>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

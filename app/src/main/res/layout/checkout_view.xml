@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- Existing Book View Elements -->
     <ImageView
         android:layout_width="28dp"
         android:layout_height="28dp"
@@ -13,7 +14,7 @@
         android:layout_marginTop="25dp"
         android:src="@drawable/baseline_close_24"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textLibraryName"
@@ -27,7 +28,7 @@
         android:layout_marginEnd="100dp"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/inputSearch"
@@ -43,9 +44,9 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/textLibraryName"
         app:layout_constraintTop_toBottomOf="@id/textLibraryName"
-        app:layout_constraintBottom_toTopOf="@id/textBookName"
-        />
+        app:layout_constraintBottom_toTopOf="@id/textBookName" />
 
+    <!-- Add Book Details Section -->
     <TextView
         android:id="@+id/textBookName"
         android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
         android:layout_marginBottom="5dp"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="@+id/inputSearch"
-        app:layout_constraintTop_toBottomOf="@+id/inputSearch"/>
+        app:layout_constraintTop_toBottomOf="@+id/inputSearch" />
 
     <TextView
         android:id="@+id/textBookYear"
@@ -72,80 +73,15 @@
         android:layout_marginBottom="5dp"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="@+id/textBookName"
-        app:layout_constraintTop_toBottomOf="@+id/textBookName"/>
+        app:layout_constraintTop_toBottomOf="@+id/textBookName" />
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/imageBookCover"
-        android:layout_width="95dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="10dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/app_name"
-        app:riv_corner_radius="12dp"
-        app:layout_constraintStart_toStartOf="@id/inputSearch"
-        app:layout_constraintBottom_toTopOf="@id/textBookDescription"
-        app:riv_border_color="@color/black"
-        app:riv_border_width="2dp"/>
-
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/imagePageOne"
-        android:layout_width="95dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintTop_toBottomOf="@+id/textBookYear"
-        app:layout_constraintLeft_toRightOf="@id/imageBookCover"
-        app:riv_corner_radius="6dp"/>
-
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/imagePageTwo"
-        android:layout_width="95dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintTop_toBottomOf="@+id/textBookYear"
-        app:layout_constraintLeft_toRightOf="@id/imagePageOne"
-        app:riv_corner_radius="6dp"/>
-
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/imagePageThree"
-        android:layout_width="95dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintTop_toBottomOf="@+id/textBookYear"
-        app:layout_constraintLeft_toRightOf="@id/imagePageTwo"
-        app:riv_corner_radius="6dp"/>
-
-    <TextView
-        android:id="@+id/textBookDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/book_description"
-        android:maxLines="8"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:padding="10dp"
-        app:layout_constraintStart_toStartOf="@+id/textBookYear"
-        app:layout_constraintTop_toBottomOf="@+id/imagePageThree"/>
-
+    <!-- Checkout Button -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:animateLayoutChanges="true"
-        app:layout_constraintTop_toBottomOf="@id/textBookDescription"
+        app:layout_constraintTop_toBottomOf="@id/textBookYear"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.button.MaterialButton
@@ -157,9 +93,6 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:cornerRadius="8sp"
-            />
-
+            app:cornerRadius="8sp" />
     </FrameLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

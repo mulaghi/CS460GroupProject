@@ -52,6 +52,20 @@ public class BookView extends AppCompatActivity {
             bookDescription.setText(description != null ? description : "No Description Available");
 
         }
+        bookCoverImage.setOnClickListener(v -> {
+            // Navigate back to the previous activity
+            onBackPressed();
+        });
+
+        // Handle checkout button
+        findViewById(R.id.buttonCheckout).setOnClickListener(v -> {
+            Intent checkoutIntent = new Intent(BookView.this, BookViewActivity.class);
+            checkoutIntent.putExtra("Title", bookTitle.getText().toString());
+            checkoutIntent.putExtra("Author", bookAuthor.getText().toString());
+            checkoutIntent.putExtra("Description", bookDescription.getText().toString());
+            // Pass other data as needed
+            startActivity(checkoutIntent);
+        });
     }
 
 }
