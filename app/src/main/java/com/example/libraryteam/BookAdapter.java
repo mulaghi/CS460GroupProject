@@ -1,5 +1,8 @@
 package com.example.libraryteam;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,7 +85,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         View viewBackground;
 
         RoundedImageView imageBook;
-        TextView bookTitle, bookAuthor, bookDescription, bookLanguage, bookPublished, bookPublisher, bookISBN, bookShortDescription;
+        TextView bookTitle, bookAuthor, bookDescription, bookLanguage, bookPublished, bookPublisher, bookISBN; //bookShortDescription;
 
         /**
          * Constructor for {@code BookViewHolder}.
@@ -99,8 +102,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             bookPublisher = itemView.findViewById(R.id.bookPublisher);
             bookPublished = itemView.findViewById(R.id.bookPublished);
             bookISBN = itemView.findViewById(R.id.bookISBN);
-            bookDescription = itemView.findViewById(R.id.bookDescription);
-            bookShortDescription = itemView.findViewById(R.id.bookShortDescription);
+            bookDescription = itemView.findViewById(R.id.bookShortDescription);
+//          bookShortDescription = itemView.findViewById(R.id.bookShortDescription);
         }
 
         /**
@@ -108,18 +111,32 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
          *
          * @param book The {@link Book} object containing the data to be displayed.
          */
-        void  bindBook(final Book book){
+        void bindBook(final Book book) {
             if (book != null) {
-                imageBook.setImageResource(book.image);
-                bookTitle.setText(book.Title);
-                bookAuthor.setText(book.Author);
-                bookLanguage.setText(book.Language);
-                bookPublished.setText(book.Published);
-                bookPublisher.setText(book.Publisher);
-                bookDescription.setText(book.Description);
-                bookISBN.setText(book.ISBN);
+                // Handle Base64 encoded image
+                if (book.getBookImage() != null && !book.getBookImage().isEmpty()) {
+                    try {
+                        byte[] decodedString = Base64.decode(book.getBookImage(), Base64.DEFAULT);
+                        Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        imageBook.setImageBitmap(decodedBitmap);
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                        imageBook.setImageResource(R.drawable.placeholder_image); // Fallback image in case of decode error
+                    }
+                } else {
+                    imageBook.setImageResource(R.drawable.placeholder_image); // Default placeholder
+                }
+                // Set other book details
+                bookTitle.setText(book.getBookTitle());
+                bookAuthor.setText(book.getAuthor());
+                bookLanguage.setText(R.string.language_not_specified); // Default text for Language
+                bookPublished.setText(String.valueOf(book.getBookYear())); // Convert year to String
+                bookPublisher.setText(R.string.publisher_not_specified); // Default text for Publisher
+                bookDescription.setText(book.getBookDescription());
+                bookISBN.setText(R.string.isbn_not_specified); // Default text for ISBN
             }
 
+            // Set OnClickListener for layoutBooks
             layoutBooks.setOnClickListener(v -> {
                 if (onBookClickListener != null) {
                     onBookClickListener.onBookClick(book);
@@ -128,6 +145,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         }
 
     }
+
+
 
 
 }

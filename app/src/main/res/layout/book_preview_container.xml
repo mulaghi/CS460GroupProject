@@ -115,11 +115,4 @@
         app:layout_constraintStart_toStartOf="@+id/threecolLayout"
         app:layout_constraintTop_toBottomOf="@+id/bookAuthor"
         />
-
-<!--    Error seen is from this message here but will be changing once we change it to a variable in the next page diagram-->
-    <TextView
-        android:id="@+id/bookDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

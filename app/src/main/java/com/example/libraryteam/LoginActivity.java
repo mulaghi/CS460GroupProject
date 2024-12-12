@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Sets listeners for when user clicks on the "Sign in" or "Create new account" button
-     * on the sign in page and executes functions acoordingly
+     * on the sign in page and executes functions accordingly
      * If the create new account button is pressed, the user is redirected to the sign up activity
      * If the sign in button is pressed, email input is checked if they're an email pattern or was entered
      * and if the password was entered
@@ -53,6 +53,8 @@ public class LoginActivity extends AppCompatActivity {
                 SignIn();
             }
         });
+        binding.forgotLoginClickable.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), ForgotPasswordActivity.class)));
     }
 
     /**
