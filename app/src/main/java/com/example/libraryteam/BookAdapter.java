@@ -82,7 +82,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         View viewBackground;
 
         RoundedImageView imageBook;
-        TextView bookTitle, bookAuthor, bookDescription, bookLanguage, bookPublished, bookPublisher, bookISBN, bookShortDescription;
+        TextView bookTitle, bookAuthor, bookDescription, bookLanguage, bookPublished, bookPublisher, bookISBN; //bookShortDescription;
 
         /**
          * Constructor for {@code BookViewHolder}.
@@ -99,8 +99,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             bookPublisher = itemView.findViewById(R.id.bookPublisher);
             bookPublished = itemView.findViewById(R.id.bookPublished);
             bookISBN = itemView.findViewById(R.id.bookISBN);
-            bookDescription = itemView.findViewById(R.id.bookDescription);
-            bookShortDescription = itemView.findViewById(R.id.bookShortDescription);
+            bookDescription = itemView.findViewById(R.id.bookShortDescription);
+//            bookShortDescription = itemView.findViewById(R.id.bookShortDescription);
         }
 
         /**

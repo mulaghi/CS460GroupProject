@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         bookOne.Language = "English";
         bookOne.Published= "2020";
         bookOne.Publisher = "Workman Publishing Company";
-        bookOne.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-        bookOne.shortDescription = getShortenedText(bookOne.Description, 30);
+        bookOne.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt";
+        //bookOne.shortDescription = getShortenedText(bookOne.Description, 30);
         bookList.add(bookOne);
 
         Book bookTwo = new Book();
@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         bookTwo.Language = "English";
         bookTwo.Published= "2016";
         bookTwo.Publisher = "Workman Publishing Company";
-        bookTwo.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-        bookTwo.shortDescription = getShortenedText(bookTwo.Description, 30);
+        bookTwo.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.";
+        //bookTwo.shortDescription = getShortenedText(bookTwo.Description, 30);
         bookList.add(bookTwo);
 
         Book bookThree = new Book();
@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
         bookThree.Language = "English";
         bookThree.Published= "2020";
         bookThree.Publisher = "Workman Publishing Company";
-        bookThree.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-        bookThree.shortDescription = getShortenedText(bookThree.Description, 30);
+        bookThree.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt";
+        //bookThree.shortDescription = getShortenedText(bookThree.Description, 30);
         bookList.add(bookThree);
 
         Book bookFour = new Book();
@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
         bookFour.Language = "English";
         bookFour.Published= "2020";
         bookFour.Publisher = "Workman Publishing Company";
-        bookFour.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-        bookFour.shortDescription = getShortenedText(bookFour.Description, 30);
+        bookFour.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt";
+        //bookFour.shortDescription = getShortenedText(bookFour.Description, 30);
         bookList.add(bookFour);
 
         Book bookFive = new Book();
@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
         bookFive.Language = "English";
         bookFive.Published= "2020";
         bookFive.Publisher = "Workman Publishing Company";
-        bookFive.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-        bookFive.shortDescription = getShortenedText(bookFive.Description, 30);
+        bookFive.Description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt";
+        //bookFive.shortDescription = getShortenedText(bookFive.Description, 30);
         bookList.add(bookFive);
 
         BookAdapter bookAdapter = new BookAdapter(bookList, book -> {
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("Published", book.Published);
             intent.putExtra("ISBN", book.ISBN);
             intent.putExtra("Description", book.Description);
-            intent.putExtra("Image", book.image);
+            intent.putExtra("Image", R.id.bookCover);
 
             startActivity(intent); // Start the new activity
         });
