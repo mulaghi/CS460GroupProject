@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Patterns;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -29,6 +30,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -43,8 +45,11 @@ public class UpdateSettingsActivity extends AppCompatActivity {
     private ActivityUserSettingsBinding binding;
 
     private String encodeImage;
+    private String email;
 
-    LoggedInUser loggedInUser;
+    private LoggedInUser loggedInUser;
+    private FirebaseAuth auth;
+    private FirebaseUser firebaseUser;
 
 
     private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(
@@ -52,15 +57,17 @@ public class UpdateSettingsActivity extends AppCompatActivity {
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
                     Uri imageUri = result.getData().getData();
-                    try {
-                        InputStream inputStream = getContentResolver().openInputStream(imageUri);
-                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    if (imageUri != null) {
+                        try {
+                            InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
-                        binding.imageProfile.setImageBitmap(bitmap);
-                        encodeImage = encodeImage(bitmap);
+                            binding.imageProfile.setImageBitmap(bitmap);
+                            encodeImage = encodeImage(bitmap);
 
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -80,10 +87,10 @@ public class UpdateSettingsActivity extends AppCompatActivity {
 
         loggedInUser = new LoggedInUser();
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
+        auth = FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
 
-        String email = firebaseUser.getEmail();
+        email = firebaseUser.getEmail();
 
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance(FirebaseApp.getInstance());
         Query usersQuery = firebaseFirestore.collectionGroup("User");
@@ -99,16 +106,28 @@ public class UpdateSettingsActivity extends AppCompatActivity {
                             loggedInUser.email = (String)result.get("email");
                             loggedInUser.image = (String)result.get("image");
                             loggedInUser.name = (String)result.get("name");
+
+                            binding.etUsername.setText(loggedInUser.name);
+                            binding.etEmail.setText(loggedInUser.email);
+
+                            if (loggedInUser.image != null) {
+                                byte[] bytes = Base64.decode(loggedInUser.image, Base64.DEFAULT);
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                binding.imageProfile.setImageBitmap(bitmap);
+                            }
+
+                            encodeImage = loggedInUser.image;
+                        } else {
+                            showToast("NullDocument");
+                            Log.d("NullDocument:", "the QueryDocumentSnapshot object was null");
                         }
                     }
                 } else {
-                    Log.d("Query.get error:", task.getException().getMessage());
+                    showToast("QueryGetError");
+                    Log.d("QueryGetError:", task.getException().getMessage());
                 }
             }
         });
-
-        showToast(loggedInUser.email);
-        showToast(loggedInUser.name);
 
         setListeners();
     }
@@ -118,12 +137,15 @@ public class UpdateSettingsActivity extends AppCompatActivity {
      * Sets up the button listeners
      */
     private void setListeners() {
-        binding.btnCancelUserSettings.setOnClickListener(v -> onBackPressed());
+        binding.btnBackToMain.setOnClickListener(v -> onBackPressed());
 
         binding.btnUpdateUserSettings.setOnClickListener(v -> {
+
             if (isValidUpdateDetails()) {
-                showToast("update details are valid");
+                updateUser();
             }
+
+
         });
 
         binding.layoutImage.setOnClickListener(v -> {
@@ -135,10 +157,49 @@ public class UpdateSettingsActivity extends AppCompatActivity {
 
 
     /**
+     * Updates the user's settings in the database
+     */
+    private void updateUser() {
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance(FirebaseApp.getInstance());
+        DocumentReference userRef = firebaseFirestore.collection("User").document(firebaseUser.getUid());
+
+        HashMap<String, Object> updates = new HashMap<String, Object>();
+        updates.put("email", binding.etEmail.getText().toString());
+        updates.put("image", encodeImage);
+        updates.put("name", binding.etUsername.getText().toString());
+
+        userRef.update(updates)
+                .addOnSuccessListener(aVoid -> showToast("user info updated"))
+                .addOnFailureListener(e -> {
+                    showToast("couldn't update user info");
+                    Log.d("DocUpdateError:", e.getMessage());
+                });
+
+        firebaseUser.updateEmail(binding.etEmail.getText().toString())
+                .addOnSuccessListener(aVoid -> {
+                        auth.updateCurrentUser(firebaseUser)
+                                .addOnFailureListener(e -> {
+                            Log.d("EmailUpdateError:", e.getMessage());
+                        });
+                })
+                .addOnFailureListener(e -> {
+                    Log.d("EmailUpdateError:", e.getMessage());
+                });
+
+        loggedInUser.email = binding.etEmail.getText().toString();
+        loggedInUser.image = encodeImage;
+        loggedInUser.name = binding.etUsername.getText().toString();
+    }
+
+
+    /**
      * Shows a toast message
      * @param message The message to show
      */
     private void showToast(String message) {
+        if (message == null) {
+            Toast.makeText(getApplicationContext(), "null", Toast.LENGTH_SHORT).show();
+        }
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 

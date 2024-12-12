@@ -53,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     } else if (item.getItemId() == R.id.menu_user_settings) {
                         // Handles "User Settings"
-                        Intent intent = new Intent(getApplicationContext(), UpdateSettingsActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+                        startActivity(new Intent(getApplicationContext(), UpdateSettingsActivity.class));
                         return true;
                     }
                     return false;

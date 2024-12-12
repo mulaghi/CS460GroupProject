@@ -93,12 +93,12 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCancelUserSettings"
+                android:id="@+id/btnBackToMain"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:text="@string/cancel"
+                android:text="@string/back"
                 android:textSize="20sp" />
 
             <com.google.android.material.button.MaterialButton
